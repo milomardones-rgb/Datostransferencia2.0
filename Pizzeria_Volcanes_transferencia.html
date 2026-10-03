@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pizzería Volcanes — Datos de Transferencia</title>
+<style>
+:root{--green:#25b51b;--red:#e43b32;--cream:#f4efe5;--dark:#10100f;--card:#191816;--line:#45433e}
+*{box-sizing:border-box}
+body{margin:0;background:#0d0d0c;color:var(--cream);font-family:Arial,Helvetica,sans-serif}
+.wrap{max-width:760px;margin:auto;min-height:100vh;background:
+linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.55)),
+radial-gradient(circle at 85% 28%,#8a3b13 0,#25150d 25%,#0e0d0b 58%,#090909 100%);padding-bottom:35px}
+header{text-align:center;padding:35px 18px 25px}
+.volcan{font-size:48px;font-weight:900;letter-spacing:7px;line-height:1;color:#f7f2e8}
+.pizzeria{font-size:15px;letter-spacing:7px;margin:12px 0 10px}
+.frutillar{font-size:15px;letter-spacing:5px}
+.tricolor{height:6px;width:160px;margin:14px auto 0;background:linear-gradient(90deg,var(--green) 33%,#f7f2e8 33%,#f7f2e8 66%,var(--red) 66%);border-radius:5px}
+.tag{position:absolute;right:18px;top:25px;font-size:12px;line-height:1.7;letter-spacing:3px;text-align:left}
+.content{padding:0 14px}
+.card{background:rgba(17,16,14,.94);border:1px solid #55514a;border-radius:24px;padding:22px 14px 18px;box-shadow:0 12px 40px #0008}
+.title{font-size:28px;font-weight:900;letter-spacing:2px;margin:0 0 5px}
+.subtitle{letter-spacing:5px;font-size:12px;margin-bottom:20px;color:#ddd5c8}
+.all{width:100%;border:0;border-radius:14px;padding:15px;background:var(--green);color:#fff;font-weight:800;font-size:15px;letter-spacing:.5px;margin-bottom:10px;cursor:pointer}
+.row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:16px 4px;border-top:1px solid var(--line)}
+.label{font-size:11px;letter-spacing:2px;color:#aaa49b;margin-bottom:6px;font-weight:700}
+.value{font-size:18px;font-weight:800;overflow-wrap:anywhere}
+.copy{border:1px solid #68645d;background:#302f2b;color:#fff;border-radius:12px;padding:11px 14px;font-weight:700;cursor:pointer}
+.note{text-align:center;font-size:13px;color:#c9c2b7;margin:22px 12px 0;line-height:1.5}
+.thanks{text-align:right;font-family:cursive;font-size:25px;font-style:italic;margin:25px 10px 0}
+@media(max-width:520px){.volcan{font-size:35px;letter-spacing:4px}.pizzeria{font-size:12px;letter-spacing:5px}.tag{display:none}.title{font-size:22px}.value{font-size:16px}.copy{padding:10px 11px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="pizzeria">PIZZERÍA</div>
+  <div class="volcan">VOLCANES</div>
+  <div class="tricolor"></div>
+  <div class="frutillar">FRUTILLAR</div>
+</header>
+
+<main class="content">
+<section class="card">
+  <h1 class="title">DATOS DE TRANSFERENCIA</h1>
+  <div class="subtitle">PIZZERÍA VOLCANES</div>
+  <button class="all" onclick="copyAll()">▣ &nbsp; COPIAR TODOS LOS DATOS</button>
+
+  <div class="row"><div><div class="label">NOMBRE</div><div class="value">PASCAL PEREDA</div></div><button class="copy" onclick="copyText('PASCAL PEREDA')">Copiar</button></div>
+  <div class="row"><div><div class="label">RUT</div><div class="value">17.517.168-1</div></div><button class="copy" onclick="copyText('17.517.168-1')">Copiar</button></div>
+  <div class="row"><div><div class="label">BANCO</div><div class="value">Tenpo</div></div><button class="copy" onclick="copyText('Tenpo')">Copiar</button></div>
+  <div class="row"><div><div class="label">TIPO DE CUENTA</div><div class="value">Cuenta Vista</div></div><button class="copy" onclick="copyText('Cuenta Vista')">Copiar</button></div>
+  <div class="row"><div><div class="label">N° DE CUENTA</div><div class="value">111117517168</div></div><button class="copy" onclick="copyText('111117517168')">Copiar</button></div>
+  <div class="row"><div><div class="label">EMAIL</div><div class="value">pascal.pereda@gmail.com</div></div><button class="copy" onclick="copyText('pascal.pereda@gmail.com')">Copiar</button></div>
+</section>
+
+<p class="note">Una vez realizada la transferencia, por favor conserva tu comprobante.</p>
+<div class="thanks">¡Gracias por tu compra!</div>
+</main>
+</div>
+
+<script>
+function copyText(text){
+ navigator.clipboard.writeText(text).then(()=>showToast("¡Copiado!"));
+}
+function copyAll(){
+ const text=`PASCAL PEREDA
+17.517.168-1
+Tenpo
+Cuenta Vista
+111117517168
+pascal.pereda@gmail.com`;
+ navigator.clipboard.writeText(text).then(()=>showToast("¡Datos copiados!"));
+}
+function showToast(msg){
+ let t=document.getElementById('toast');
+ if(!t){t=document.createElement('div');t.id='toast';t.style.cssText='position:fixed;left:50%;bottom:25px;transform:translateX(-50%);background:#25b51b;color:white;padding:12px 18px;border-radius:10px;font-weight:700;z-index:99';document.body.appendChild(t)}
+ t.textContent=msg;t.style.display='block';clearTimeout(window.tt);window.tt=setTimeout(()=>t.style.display='none',1600);
+}
+</script>
+</body>
+</html>
